@@ -1,4 +1,4 @@
-# proc-local.js
+# prac-local.js
 Practical LocalStorage
 
 For data that you want to store in `localStorage`:
@@ -8,4 +8,4 @@ For data that you want to store in `localStorage`:
 
 So `localStorage` is not practical.
 
-`proc-local.js` is to provide a practical way to use `localStorage`.
+`prac-local.js` is to provide a practical way to use `localStorage`.
