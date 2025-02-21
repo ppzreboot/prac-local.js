@@ -1,0 +1,20 @@
+{
+  "name": "prac-local",
+  "version": "0.0.0",
+  "author": "",
+  "license": "UNLICENSED",
+  "description": "Practical LocalStorage",
+  "keywords": [],
+
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.ts"
+  ],
+
+  "scripts": {},
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
