@@ -1,19 +1,21 @@
 {
   "name": "prac-local",
-  "version": "0.0.0",
-  "author": "",
+  "version": "0.1.0",
+  "author": "PPz",
   "license": "UNLICENSED",
   "description": "Practical LocalStorage",
-  "keywords": [],
 
   "type": "module",
-  "main": "index.js",
   "files": [
-    "index.js",
-    "index.ts"
+    "lib/*"
   ],
+  "exports": {
+    ".": "./lib/mod.js"
+  },
 
-  "scripts": {},
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "typescript": "^5.7.3"
   }
