@@ -153,3 +153,21 @@ function demo4() {
   console.assert(current_data.name === 'JJ', 'error in empty_set')
   console.assert(current_data.year === 1, 'error in empty_set')
 }
+
+function type_error() {
+  prac_local({
+    key: 'type_error',
+    initial_data: null, // there should be an error here
+    validate: () => true,
+  })
+
+  interface I_data {
+    name: string
+  }
+
+  prac_local<I_data | null>({
+    key: 'type_error',
+    initial_data: { name: 'PPz' }, // there should be an error here, but I don't know how to do it
+    validate: () => true,
+  })
+}
