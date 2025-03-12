@@ -9,6 +9,6 @@
     "vite": "^6.2.0"
   },
   "dependencies": {
-    "prac-local": "file:../practical-local-storage.js/prac-local-0.1.0.tgz"
+    "prac-local": "^0.1.0"
   }
 }
