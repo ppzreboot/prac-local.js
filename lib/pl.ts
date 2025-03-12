@@ -5,21 +5,25 @@ const key_set = new Set<string>()
 export
 interface I_prac_local_opts<T> {
     key: string
-    initial_data: T
+    initial_data: NonNullable<T>
     validate: (data: any) => boolean
 }
 
 export
 function prac_local<T>(opts: I_prac_local_opts<T>) {
-    if (key_set.has(opts.key))
-        throw new Error(`key "${opts.key}" already taken`)
-    key_set.add(opts.key)
+    if (opts.key === '')
+        throw new Error('key cannot be empty')
+    const key = 'prac-local.js ' + opts.key
+
+    if (key_set.has(key))
+        throw new Error(`key "${opts.key}" already taken`) // use the raw key
+    key_set.add(key)
 
     // backup initial data
     const initial_data = clone(opts.initial_data)
 
     const retrieve = () => {
-        const data = localStorage.getItem(opts.key)
+        const data = localStorage.getItem(key)
 
         if (data === null)
             return clone(initial_data)
@@ -31,13 +35,13 @@ function prac_local<T>(opts: I_prac_local_opts<T>) {
 
         throw Error(`prac-local: data (${opts.key}) in local storage is invalid`)
     }
-    const save = (data: T) => {
-        localStorage.setItem(opts.key, json(data))
+    const save = (data: NonNullable<T>) => {
+        localStorage.setItem(key, json(data))
     }
 
     return {
         save,
         retrieve,
-        reset: () => save(initial_data),
+        remove: () => localStorage.removeItem(key),
     }
 }

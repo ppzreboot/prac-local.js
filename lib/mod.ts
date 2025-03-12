@@ -1,3 +1,3 @@
 export * from './pl'
-export * from './cached'
+export * from './cache'
 export * from './cpl'
