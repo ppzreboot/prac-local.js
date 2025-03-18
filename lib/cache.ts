@@ -11,7 +11,7 @@ function cache<T>(pl: ReturnType<typeof prac_local<T>>) {
         value = clone(pl.retrieve())
       return clone(value)
     },
-    set: (data: NonNullable<T>) => {
+    set: (data: T) => {
       value = clone(data)
       pl.save(data)
     },

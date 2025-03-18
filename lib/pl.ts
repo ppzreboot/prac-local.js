@@ -5,7 +5,7 @@ const key_set = new Set<string>()
 export
 interface I_prac_local_opts<T> {
     key: string
-    initial_data: NonNullable<T>
+    initial_data: T
     validate: (data: any) => boolean
 }
 
@@ -35,7 +35,7 @@ function prac_local<T>(opts: I_prac_local_opts<T>) {
 
         throw Error(`prac-local: data (${opts.key}) in local storage is invalid`)
     }
-    const save = (data: NonNullable<T>) => {
+    const save = (data: T) => {
         localStorage.setItem(key, json(data))
     }
 
