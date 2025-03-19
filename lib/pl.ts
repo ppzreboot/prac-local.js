@@ -6,17 +6,17 @@ export
 interface I_prac_local_opts<T> {
     key: string
     initial_data: T
-    validate: (data: any) => boolean
+    validate: (data: any) => false | T
 }
 
 export
 function prac_local<T>(opts: I_prac_local_opts<T>) {
     if (opts.key === '')
-        throw new Error('key cannot be empty')
+        throw new Error('prac-local: key cannot be empty')
     const key = 'prac-local.js ' + opts.key
 
     if (key_set.has(key))
-        throw new Error(`key "${opts.key}" already taken`) // use the raw key
+        throw new Error(`prac-local: key "${opts.key}" already taken`) // use the raw key
     key_set.add(key)
 
     // backup initial data
@@ -30,13 +30,16 @@ function prac_local<T>(opts: I_prac_local_opts<T>) {
 
         const parsed_data = JSON.parse(data)
 
-        if (opts.validate(parsed_data))
-            return parsed_data as T
-
-        throw Error(`prac-local: data (${opts.key}) in local storage is invalid`)
+        const valid_data = opts.validate(parsed_data)
+        if (valid_data === false)
+            throw Error(`prac-local: (${opts.key}) data in local storage is invalid`)
+        return valid_data
     }
     const save = (data: T) => {
-        localStorage.setItem(key, json(data))
+        const valid_data = opts.validate(data)
+        if (valid_data === false)
+            throw Error(`prac-local: (${opts.key}) saving invalid data`)
+        localStorage.setItem(key, json(valid_data))
     }
 
     return {

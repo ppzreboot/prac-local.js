@@ -12,8 +12,8 @@ function cache<T>(pl: ReturnType<typeof prac_local<T>>) {
       return clone(value)
     },
     set: (data: T) => {
-      value = clone(data)
       pl.save(data)
+      value = clone(data)
     },
     reset: () => {
       pl.remove()
